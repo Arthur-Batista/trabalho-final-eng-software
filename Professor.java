@@ -1,4 +1,8 @@
-package PACKAGE_NAME;
+public class Professor extends Usuario{
 
-public class Professor {
+    public Professor(int usuarioId, String nome, int tempoEmprestimo) {
+        super(usuarioId, nome, tempoEmprestimo);
+    }
+
+
 }
