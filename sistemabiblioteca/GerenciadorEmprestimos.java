@@ -1,11 +1,21 @@
+package sistemabiblioteca;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class GerenciadorEmprestimos {
+    private static GerenciadorEmprestimos instancia;
     private List<Emprestimo> emprestimos;
 
-    public GerenciadorEmprestimos() {
+    private GerenciadorEmprestimos() {
         this.emprestimos = new ArrayList<>();
+    }
+
+    public static GerenciadorEmprestimos getInstance() {
+        if (instancia == null) {
+            instancia = new GerenciadorEmprestimos();
+        }
+        return instancia;
     }
 
     public void adicionarEmprestimo(Emprestimo emprestimo) {
@@ -20,9 +30,9 @@ public class GerenciadorEmprestimos {
         return new ArrayList<>(emprestimos);
     }
 
-    public boolean verificarEmprestimo(String usuarioId, String livroId) {
+    public boolean verificarEmprestimo(Usuario usuario, Livro livro) {
         for (Emprestimo e : emprestimos) {
-            if (e.getUsuarioId().equals(usuarioId) && e.getLivroId().equals(livroId)) {
+            if (e.getUsuario().equals(usuario) && e.getExemplar().getLivro().equals(livro)) {
                 return true;
             }
         }
@@ -42,7 +52,7 @@ public class GerenciadorEmprestimos {
     public List<Emprestimo> procurarEmprestimosPorLivro(Livro livro) {
         List<Emprestimo> resultado = new ArrayList<>();
         for (Emprestimo e : emprestimos) {
-            if (e.getLivro().equals(livro)) {
+            if (e.getExemplar().getLivro().equals(livro)) {
                 resultado.add(e);
             }
         }
@@ -51,7 +61,7 @@ public class GerenciadorEmprestimos {
 
     public Emprestimo getEmprestimo(Usuario usuario, Livro livro) {
         for (Emprestimo e : emprestimos) {
-            if (e.getUsuario().equals(usuario) && e.getLivro().equals(livro)) {
+            if (e.getUsuario().equals(usuario) && e.getExemplar().getLivro().equals(livro)) {
                 return e;
             }
         }

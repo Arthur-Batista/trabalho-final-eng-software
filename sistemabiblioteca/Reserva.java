@@ -1,6 +1,10 @@
+package sistemabiblioteca;
+
+import java.time.LocalDate;
+
 public class Reserva {
     private Usuario usuario;
-    private Date dataReserva;
+    private LocalDate dataReserva;
     private Livro livro;
 
     public Reserva(Usuario usuario, Livro livro) {
@@ -17,11 +21,11 @@ public class Reserva {
         this.usuario = usuario;
     }
 
-    public Date getDataReserva() {
+    public LocalDate getDataReserva() {
         return dataReserva;
     }
 
-    public void setDataReserva(Date dataReserva) {
+    public void setDataReserva(LocalDate dataReserva) {
         this.dataReserva = dataReserva;
     }
 

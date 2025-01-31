@@ -1,3 +1,4 @@
+package sistemabiblioteca;
 
 public class ConsultarLivroComando implements Comando {
     @Override
@@ -6,6 +7,12 @@ public class ConsultarLivroComando implements Comando {
 				
 		Livro livro = repositorio.obterLivroPorCodigo(carregadorParametros.getParametroUm());
 
-        ConsultarLivro.consultarLivro(livro);
+        consultarLivro(livro);
 	}
+
+    public void consultarLivro(Livro livro) {
+        CarregarMensagens.imprimirDetalhesLivro(livro);
+        CarregarMensagens.imprimirReservas(livro);
+        CarregarMensagens.imprimirExemplares(livro);
+    }
 }

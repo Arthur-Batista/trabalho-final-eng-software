@@ -1,3 +1,5 @@
+package sistemabiblioteca;
+
 public class RegistrarObservacaoComando implements Comando {
     @Override
     public void executar(CarregadorParametros carregadorParametros) {
@@ -7,7 +9,14 @@ public class RegistrarObservacaoComando implements Comando {
 		
 		Livro livro = repositorio.obterLivroPorCodigo(carregadorParametros.getParametroDois());
 		
-		RegistrarObservador.registrarObservador(usuario,livro);
+		registrarObservador(usuario,livro);
 		}
+
+    public void registrarObservador(Usuario usuario,Livro livro){
+        livro.adicionarObservador(usuario);
+        CarregarMensagens.imprimirSucessoObservacao(usuario, livro);
+        }    
+
+
     }
   

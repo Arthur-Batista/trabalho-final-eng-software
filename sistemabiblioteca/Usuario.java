@@ -1,30 +1,37 @@
 package sistemabiblioteca;
 
-public abstract class Usuario {
-    private int usuarioId;
+import java.util.ArrayList;
+import java.util.List;
+import java.time.LocalDate;
+
+public abstract class Usuario implements IObservador {
+    private String usuarioId;
     private String nome;
     private int limiteEmprestimo;
     private int tempoEmprestimo;
     private IVerificarEmprestimoStrategy verificarEmprestimo;
+    private int contadorNotificacoes;
 
-    private List<Emprestimo> emprestimosPassados = ArrayList<>();
+    private List<Emprestimo> emprestimosPassados = new ArrayList<>();
 
-    public Usuario(int usuarioId, String nome, int limiteEmprestimo, int tempoEmprestimo, IVerificarEmprestimoStrategy verificarEmprestimo){
+    public Usuario(String usuarioId, String nome, int limiteEmprestimo, int tempoEmprestimo, IVerificarEmprestimoStrategy verificarEmprestimo){
         this.usuarioId = usuarioId;
         this.nome = nome;
         this.limiteEmprestimo = limiteEmprestimo;
         this.tempoEmprestimo= tempoEmprestimo;
         this.verificarEmprestimo = verificarEmprestimo;
         this.emprestimosPassados = new ArrayList<>();
+        this.contadorNotificacoes = 0;
     }
 
-    public Usuario(int usuarioId, String nome, int tempoEmprestimo,  IVerificarEmprestimoStrategy verificarEmprestimo){
+    public Usuario(String usuarioId, String nome, int tempoEmprestimo,  IVerificarEmprestimoStrategy verificarEmprestimo){
         this.usuarioId = usuarioId;
         this.nome = nome;
-        this.limiteEmprestimoStrategy = null;
-        this.tempoEmpresti = tempoEmprestimo;
+        this.limiteEmprestimo = 0;
+        this.tempoEmprestimo = tempoEmprestimo;
         this.verificarEmprestimo = verificarEmprestimo;
         this.emprestimosPassados = new ArrayList<>();
+        this.contadorNotificacoes = 0;
     }
 
     public void adicionarEmprestimosPassados(Emprestimo emprestimo) {
@@ -35,11 +42,11 @@ public abstract class Usuario {
         return new ArrayList<>(emprestimosPassados);
     }
 
-    public int getUsuarioId() {
+    public String getUsuarioId() {
         return usuarioId;
     }
 
-    public void setUsuarioId(int usuarioId) {
+    public void setUsuarioId(String usuarioId) {
         this.usuarioId = usuarioId;
     }
 
@@ -68,17 +75,29 @@ public abstract class Usuario {
     }
 
     public boolean obterVerificacao(Usuario usuario, Livro livro){
-        verificarEmprestimo.podeEmprestar(usuario, livro);
+        return verificarEmprestimo.podeEmprestar(usuario, livro);
     }
 
     public boolean isDevedor() {
         LocalDate hoje = LocalDate.now();
-        for (Emprestimo emprestimo : GerenciadorEmprestimos.procurarEmprestimosPorUsuario(this)) {
+        for (Emprestimo emprestimo : GerenciadorEmprestimos.getInstance().procurarEmprestimosPorUsuario(this)) {
             if (hoje.isAfter(emprestimo.getDataDevolucao())) {
                 return true; 
             }
         }
         return false;
+    }
+
+    public int getContadorNotificacoes() {
+        return contadorNotificacoes;
+    }
+
+    public void setContadorNotificacoes(int contadorNotificacoes) {
+        this.contadorNotificacoes = contadorNotificacoes;
+    }
+
+    public void incrementarContadorNotificacoes() {
+        this.contadorNotificacoes++;
     }
 
 }

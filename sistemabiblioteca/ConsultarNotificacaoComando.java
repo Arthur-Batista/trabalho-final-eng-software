@@ -1,14 +1,17 @@
 package sistemabiblioteca;
 
-public class ConsultarUsuarioComando implements Comando {
+public class ConsultarNotificacaoComando implements Comando {
 
-	@Override
+    @Override
 	public void executar(CarregadorParametros carregadorParametros) {
 		Repositorio repositorio = Repositorio.obterInstancia();
 				
 		Usuario usuario = repositorio.obterUsuarioPorCodigo(carregadorParametros.getParametroUm());
 
-		ConsultarUsuario.ConsultarUsuario(usuario);
-	}
+        consultarNotificacao(usuario);
+}
 
+    public void consultarNotificacao(Usuario usuario) {
+        CarregarMensagens.imprimirNotificacoes(usuario);
+    }
 }

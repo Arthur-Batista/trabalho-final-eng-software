@@ -17,6 +17,7 @@ public class CarregadorParametros {
 	public String getParametroUm() {
 		return parametroUm;
 	}
+	
 	public String getParametroDois() {
 		return parametroDois;
 	}

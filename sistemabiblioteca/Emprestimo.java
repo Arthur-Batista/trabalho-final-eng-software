@@ -1,10 +1,14 @@
+package sistemabiblioteca;
+
+import java.time.LocalDate;
+
 public class Emprestimo {
     private Usuario usuario;
     private Exemplar exemplar;
-    private Date dataEmprestimo;
-    private Date dataDevolucao;
+    private LocalDate dataEmprestimo;
+    private LocalDate dataDevolucao;
     private boolean isFinalizado;
-    private Date foiDevolvido;
+    private LocalDate foiDevolvido;
 
     public Emprestimo(Usuario usuario, Exemplar exemplar) {
         this.dataEmprestimo = LocalDate.now();
@@ -19,7 +23,7 @@ public class Emprestimo {
         return dataEmprestimo;
     }
 
-    public void setDataEmprestimo(Date dataEmprestimo) {
+    public void setDataEmprestimo(LocalDate dataEmprestimo) {
         this.dataEmprestimo = dataEmprestimo;
     }
 
@@ -27,7 +31,7 @@ public class Emprestimo {
         return dataDevolucao;
     }
 
-    public void setDataDevolucao(Date dataDevolucao) {
+    public void setDataDevolucao(LocalDate dataDevolucao) {
         this.dataDevolucao = dataDevolucao;
     }
 
@@ -53,14 +57,18 @@ public class Emprestimo {
     }
 
     public boolean isFinalizado() {
-        return status;
+        return isFinalizado;
     }
 
-    public void setStatus(boolean isFinalizado) {
+    public void setIsFinalizado(boolean isFinalizado) {
         this.isFinalizado = isFinalizado;
     }
 
-    public void setFoiDevolvido(Date foiDevolvido) {
+    public LocalDate getFoiDevolvido() {
+        return foiDevolvido;
+    }
+
+    public void setFoiDevolvido(LocalDate foiDevolvido) {
         this.foiDevolvido = foiDevolvido;
     }
 

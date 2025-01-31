@@ -1,20 +1,30 @@
+package sistemabiblioteca;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class GerenciadorReservas {
+    private static GerenciadorReservas instancia;
     private List<Reserva> reservas;
+
 
     public GerenciadorReservas() {
         this.reservas = new ArrayList<>();
     }
 
+    public static GerenciadorReservas getInstance() {
+        if (instancia == null) {
+            instancia = new GerenciadorReservas();
+        }
+        return instancia;
+    }
+
     public void adicionarReserva(Reserva reserva) {
         reservas.add(reserva);
-        if(procurarReservasPorLivro(reserva.getLivro().size()) > 2){
+        if(procurarReservasPorLivro(reserva.getLivro()).size() > 2){
             reserva.getLivro().notificarObservadores();
             }
         }
-    }
 
     public void removerReserva(Reserva reserva) {
         reservas.remove(reserva);
@@ -53,14 +63,15 @@ public class GerenciadorReservas {
         return false;
     }
 
-    public Reserva getReserva(String usuarioId, String livroId) {
+    public Reserva getReserva(Usuario usuario, Livro livro) {
         for (Reserva r : reservas) {
-            if (r.getUsuarioId().equals(usuarioId) && r.getLivroId().equals(livroId)) {
+            if (r.getUsuario().equals(usuario) && r.getLivro().equals(livro)) {
                 return r;
             }
         }
         return null;
     }
+}
+
 
     
-}

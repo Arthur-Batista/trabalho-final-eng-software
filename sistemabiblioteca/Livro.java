@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Livro implements IObservado{
-    private int id;
+    private String id;
     private String titulo;
     private String editora;
     private String autores;
@@ -13,8 +13,8 @@ public class Livro implements IObservado{
     private List<Exemplar> exemplares = new ArrayList<Exemplar>();
     private List<IObservador> observadores = new ArrayList<IObservador>();
 
-    public Livro(String codigo, String titulo, String editora, String autores, String edicao, String anoPublicacao) {
-        this.codigo = codigo;
+    public Livro(String id, String titulo, String editora, String autores, String edicao, String anoPublicacao) {
+        this.id = id;
         this.titulo = titulo;
         this.editora = editora;
         this.autores = autores;
@@ -22,8 +22,8 @@ public class Livro implements IObservado{
         this.anoPublicacao = anoPublicacao;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public String getId() {
+        return id;
     }
 
     public String getTitulo() {

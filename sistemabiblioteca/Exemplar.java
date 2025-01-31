@@ -1,10 +1,12 @@
+package sistemabiblioteca;
+
 public class Exemplar {
-    private int id;
+    private String id;
     private boolean disponivel;
     private Emprestimo emprestimo;
     private Livro livro;
 
-    public Exemplar(int id, boolean disponivel, Livro livro) {
+    public Exemplar(String id, boolean disponivel, Livro livro) {
         this.id = id;
         this.disponivel = disponivel;
         this.emprestimo = null;
@@ -26,11 +28,11 @@ public class Exemplar {
     public void setLivro(Livro livro) {
         this.livro = livro;
     }
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
