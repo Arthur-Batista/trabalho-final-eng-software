@@ -64,6 +64,6 @@ Este sistema de biblioteca acadêmica foi desenvolvido para gerenciar empréstim
 ---
 
 ## **Autores**  
-- **Arthur Batista:**  
+- **Arthur Batista**  
 - **Malu Brito**
 
