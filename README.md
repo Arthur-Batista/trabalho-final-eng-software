@@ -1,7 +1,3 @@
-Aqui está uma sugestão aprimorada para o README com base nos requisitos especificados no projeto:
-
----
-
 # **Projeto Final - Engenharia de Software I**  
 Sistema de Biblioteca Acadêmica em Java
 
