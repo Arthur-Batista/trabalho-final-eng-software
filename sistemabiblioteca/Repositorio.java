@@ -1,29 +1,50 @@
 package sistemabiblioteca;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Repositorio {
-	
-	private static Repositorio instancia;
-	
-	private List<Usuario> usuarios = new ArrayList<Usuario>();
-	private List<Livro> livros = new ArrayList<Livro>();
-	
-	private Repositorio() {};
-	
-	public static Repositorio obterInstancia() {
-		if (instancia == null)
-			instancia = new Repositorio();
-		return instancia;
-	}
-	
-	public Usuario obterUsuarioPorCodigo(String codigo) {
-		return null;
-	}
-	
-	public Livro obterLivroPorCodigo(String codigo) {
-		return null;
-	}
+
+    private static Repositorio instancia;
+
+    private List<Usuario> usuarios = new ArrayList<Usuario>();
+    private List<Livro> livros = new ArrayList<Livro>();
+
+    // Construtor privado para garantir que não haja mais de uma instância
+    private Repositorio() {
+        inicializarDados();
+    }
+
+    // Método para obter a instância única do repositório
+    public static Repositorio obterInstancia() {
+        if (instancia == null)
+            instancia = new Repositorio();
+        return instancia;
+    }
+
+    // Método para buscar um usuário pelo código
+    public Usuario obterUsuarioPorCodigo(String codigo) {
+        for (Usuario usuario : usuarios) {
+            if (usuario.getUsuarioId().equals(codigo)) {
+                return usuario;
+            }
+        }
+        // Caso não encontre o usuário, exibimos uma mensagem
+        System.out.println("Usuário não encontrado com o código: " + codigo);
+        return null; // Retorna null, indicando que não foi encontrado
+    }
+
+    // Método para buscar um livro pelo código
+    public Livro obterLivroPorCodigo(String codigo) {
+        for (Livro livro : livros) {
+            if (livro.getId().equals(codigo)) {
+                return livro;
+            }
+        }
+        // Caso não encontre o livro, exibimos uma mensagem
+        System.out.println("Livro não encontrado com o código: " + codigo);
+        return null; // Retorna null, indicando que não foi encontrado
+    }
 
 	private void inicializarDados() {
 

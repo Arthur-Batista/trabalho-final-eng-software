@@ -33,7 +33,7 @@ public class CarregarMensagens {
     }
 
     public static void imprimirNotificacoes(Usuario usuario) {
-        System.out.println("O usuario " + usuario.getNome() + " recebeu "+ usuario.getContadorNotificacoes() + "notificações.");
+        System.out.println("O usuario " + usuario.getNome() + " recebeu "+ ((Professor) usuario).getContadorNotificacoes() + " notificações.");
     }
 
     public static void imprimirEmprestimosCorrentes(Usuario usuario) {
@@ -93,5 +93,21 @@ public class CarregarMensagens {
 
     public static void imprimirSucessoObservacao(Usuario usuario, Livro livro) {
         System.out.println("Observação realizada com sucesso para o usuário " + usuario.getNome() + " do livro " + livro.getTitulo());
+    }
+
+    public static void imprimirComandoNaoReconhecido(String strComando){
+        System.out.println("Comando não reconhecido: " + strComando);
+    }
+
+    public static void imprimirMensagemInicial(){
+        System.out.println("\n Bem-vindo ao Sistema da Biblioteca");
+    }
+
+    public static void imprimirMensagemFinal(){
+        System.out.println("\n Obrigado por utilizar o Sistema da Biblioteca");
+    }
+
+    public static void imprimirMenu(){
+        System.out.println("\nDigite um comando (emp, usu, dev, res, obs, liv, ntf, sai): ");
     }
 }

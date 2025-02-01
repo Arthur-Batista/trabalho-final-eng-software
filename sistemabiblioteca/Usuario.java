@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
 
-public abstract class Usuario implements IObservador {
+public abstract class Usuario {
     private String usuarioId;
     private String nome;
     private int limiteEmprestimo;
     private int tempoEmprestimo;
     private IVerificarEmprestimoStrategy verificarEmprestimo;
-    private int contadorNotificacoes;
 
     private List<Emprestimo> emprestimosPassados = new ArrayList<>();
 
@@ -21,7 +20,6 @@ public abstract class Usuario implements IObservador {
         this.tempoEmprestimo= tempoEmprestimo;
         this.verificarEmprestimo = verificarEmprestimo;
         this.emprestimosPassados = new ArrayList<>();
-        this.contadorNotificacoes = 0;
     }
 
     public Usuario(String usuarioId, String nome, int tempoEmprestimo,  IVerificarEmprestimoStrategy verificarEmprestimo){
@@ -31,7 +29,6 @@ public abstract class Usuario implements IObservador {
         this.tempoEmprestimo = tempoEmprestimo;
         this.verificarEmprestimo = verificarEmprestimo;
         this.emprestimosPassados = new ArrayList<>();
-        this.contadorNotificacoes = 0;
     }
 
     public void adicionarEmprestimosPassados(Emprestimo emprestimo) {
@@ -88,16 +85,8 @@ public abstract class Usuario implements IObservador {
         return false;
     }
 
-    public int getContadorNotificacoes() {
-        return contadorNotificacoes;
-    }
-
-    public void setContadorNotificacoes(int contadorNotificacoes) {
-        this.contadorNotificacoes = contadorNotificacoes;
-    }
-
-    public void incrementarContadorNotificacoes() {
-        this.contadorNotificacoes++;
+    public IObservador getObservador() {
+        return null;
     }
 
 }

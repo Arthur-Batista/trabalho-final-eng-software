@@ -12,11 +12,11 @@ public class Emprestimo {
 
     public Emprestimo(Usuario usuario, Exemplar exemplar) {
         this.dataEmprestimo = LocalDate.now();
-        this.dataDevolucao = calcularDataDevolucao();
         this.usuario = usuario;
         this.exemplar = exemplar;
         this.foiDevolvido = null;
         this.isFinalizado = false;
+        this.dataDevolucao = calcularDataDevolucao();
     }
 
     public LocalDate getDataEmprestimo() {
